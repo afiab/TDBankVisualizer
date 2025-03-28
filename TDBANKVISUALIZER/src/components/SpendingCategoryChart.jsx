@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Tooltip, Cell } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, Legend, ResponsiveContainer } from "recharts";
 
 // Function to dynamically extract a category from the transaction description
 const extractCategory = (description) => {
@@ -29,7 +29,7 @@ function SpendingCategoryChart({ data }) {
 
     const chartData = Object.keys(categoryTotals)
         .map(key => ({
-            name: key,
+            name: `${key} ($${categoryTotals[key].toFixed(2)})`, // Add total in legend
             value: parseFloat(categoryTotals[key].toFixed(2)) // Round to 2 decimal places
         }))
         .sort((a, b) => b.value - a.value); // Sort from greatest to least
@@ -37,14 +37,23 @@ function SpendingCategoryChart({ data }) {
     const COLORS = ["#FF5733", "#FF8D33", "#FFC733", "#75FF33", "#33FF57", "#3399FF", "#8D33FF"];
 
     return (
-        <PieChart width={400} height={400}>
-            <Pie data={chartData} dataKey="value" nameKey="name" outerRadius={150}>
-                {chartData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-            </Pie>
-            <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
-        </PieChart>
+        <ResponsiveContainer width="100%" height={400}>
+            <PieChart>
+                <Pie data={chartData} dataKey="value" nameKey="name" outerRadius={150}>
+                    {chartData.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                </Pie>
+                <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+                <Legend 
+                    layout="vertical" 
+                    verticalAlign="middle" 
+                    align="right" 
+                    iconType="circle" 
+                    wrapperStyle={{ paddingLeft: '20px' }}
+                />
+            </PieChart>
+        </ResponsiveContainer>
     );
 }
 

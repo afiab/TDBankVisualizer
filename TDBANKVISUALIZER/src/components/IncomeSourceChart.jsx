@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Tooltip, Cell } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, Legend } from "recharts";
 
 function IncomeSourceChart({ data }) {
     const extractIncomeSource = (description) => {
@@ -20,21 +20,28 @@ function IncomeSourceChart({ data }) {
 
     const chartData = Object.keys(incomeSources)
         .map(key => ({
-            name: key,
-            value: parseFloat(incomeSources[key].toFixed(2)) // Round to 2 decimal places
+            name: `${key} ($${incomeSources[key].toFixed(2)})`, // Include total in the legend
+            value: parseFloat(incomeSources[key].toFixed(2))
         }))
         .sort((a, b) => b.value - a.value); // Sort from greatest to least
 
     const COLORS = ["#3366FF", "#33A1FF", "#33E3FF", "#33FFBD", "#33FF75"];
 
     return (
-        <PieChart width={400} height={400}>
+        <PieChart width={600} height={400}>
             <Pie data={chartData} dataKey="value" nameKey="name" outerRadius={150}>
                 {chartData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
             </Pie>
             <Tooltip formatter={(value) => `$${value.toFixed(2)}`} /> 
+            <Legend 
+                layout="vertical" 
+                verticalAlign="middle" 
+                align="right" 
+                iconType="circle" 
+                wrapperStyle={{ paddingLeft: '20px' }}
+            />
         </PieChart>
     );
 }
