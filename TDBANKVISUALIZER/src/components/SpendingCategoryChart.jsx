@@ -18,7 +18,6 @@ const extractCategory = (description) => {
     return sections.length > 0 ? sections[0] : "Other";
 };
 
-
 function SpendingCategoryChart({ data }) {
     const categoryTotals = data.reduce((acc, row) => {
         if (row.debit > 0) {
@@ -30,7 +29,7 @@ function SpendingCategoryChart({ data }) {
 
     const chartData = Object.keys(categoryTotals).map(key => ({
         name: key,
-        value: categoryTotals[key]
+        value: parseFloat(categoryTotals[key].toFixed(2)) // Round to 2 decimal places
     }));
 
     const COLORS = ["#FF5733", "#FF8D33", "#FFC733", "#75FF33", "#33FF57", "#3399FF", "#8D33FF"];
@@ -42,7 +41,7 @@ function SpendingCategoryChart({ data }) {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
             </Pie>
-            <Tooltip />
+            <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
         </PieChart>
     );
 }

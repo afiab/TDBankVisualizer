@@ -20,7 +20,7 @@ function IncomeSourceChart({ data }) {
 
     const chartData = Object.keys(incomeSources).map(key => ({
         name: key,
-        value: incomeSources[key]
+        value: parseFloat(incomeSources[key].toFixed(2)) // Ensure rounding to 2 decimal places
     }));
 
     const COLORS = ["#3366FF", "#33A1FF", "#33E3FF", "#33FFBD", "#33FF75"];
@@ -32,7 +32,7 @@ function IncomeSourceChart({ data }) {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
             </Pie>
-            <Tooltip />
+            <Tooltip formatter={(value) => `$${value.toFixed(2)}`} /> 
         </PieChart>
     );
 }
