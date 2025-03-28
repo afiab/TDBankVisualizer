@@ -27,10 +27,12 @@ function SpendingCategoryChart({ data }) {
         return acc;
     }, {});
 
-    const chartData = Object.keys(categoryTotals).map(key => ({
-        name: key,
-        value: parseFloat(categoryTotals[key].toFixed(2)) // Round to 2 decimal places
-    }));
+    const chartData = Object.keys(categoryTotals)
+        .map(key => ({
+            name: key,
+            value: parseFloat(categoryTotals[key].toFixed(2)) // Round to 2 decimal places
+        }))
+        .sort((a, b) => b.value - a.value); // Sort from greatest to least
 
     const COLORS = ["#FF5733", "#FF8D33", "#FFC733", "#75FF33", "#33FF57", "#3399FF", "#8D33FF"];
 

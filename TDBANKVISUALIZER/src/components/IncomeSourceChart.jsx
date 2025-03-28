@@ -5,7 +5,7 @@ function IncomeSourceChart({ data }) {
     const extractIncomeSource = (description) => {
         if (description.toUpperCase().includes("ZELLE")) {
             const parts = description.split("Zelle");
-            return parts.length > 1 ? "Zelle" + parts[1] : "Zelle";
+            return parts.length > 1 ? "Zelle" + parts[1].trim() : "Zelle";
         }
         return description;
     };
@@ -18,10 +18,12 @@ function IncomeSourceChart({ data }) {
         return acc;
     }, {});
 
-    const chartData = Object.keys(incomeSources).map(key => ({
-        name: key,
-        value: parseFloat(incomeSources[key].toFixed(2)) // Ensure rounding to 2 decimal places
-    }));
+    const chartData = Object.keys(incomeSources)
+        .map(key => ({
+            name: key,
+            value: parseFloat(incomeSources[key].toFixed(2)) // Round to 2 decimal places
+        }))
+        .sort((a, b) => b.value - a.value); // Sort from greatest to least
 
     const COLORS = ["#3366FF", "#33A1FF", "#33E3FF", "#33FFBD", "#33FF75"];
 
