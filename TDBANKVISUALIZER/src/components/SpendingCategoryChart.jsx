@@ -50,8 +50,9 @@ function SpendingCategoryChart({ data }) {
                     verticalAlign="middle" 
                     align="right" 
                     iconType="circle" 
-                    wrapperStyle={{ paddingLeft: '20px' }}
+                    wrapperStyle={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)" }}
                 />
+
             </PieChart>
         </ResponsiveContainer>
     );

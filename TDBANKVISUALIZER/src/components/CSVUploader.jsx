@@ -25,7 +25,8 @@ function CSVUploader({ onDataParsed }) {
 
     return (
         <div>
-            <h2>Upload Your Bank CSV</h2>
+            <h2>Upload Here</h2>
+            <p>Upload your TD Bank CSV file here. The file should contain the following columns: Date, Description, Transaction Type, Debit, Credit, Account Running Balance.</p>
             <input type="file" accept=".csv" onChange={handleFileUpload} />
         </div>
     );

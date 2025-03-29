@@ -9,7 +9,7 @@ function Dashboard() {
     const [data, setData] = useState([]);
 
     return (
-        <div>
+        <div class="dashboard-container">
             <h1>Bank Data Analyzer</h1>
             <CSVUploader onDataParsed={setData} />
             {data.length > 0 && (
