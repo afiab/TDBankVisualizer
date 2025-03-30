@@ -12,6 +12,8 @@ npm run dev
 ## Intended Usage
 Download a csv file of your account history when you login on the TD Bank website. Then upload that file onto this site for your transaction history to be visualized.
 
+![ezgif-16850a4917420f](https://github.com/user-attachments/assets/9cf4d519-6e06-4a79-8362-180078f49405)
+
 ### Generated Charts
 - **Account Balance Over Time**: A line chart that visualizes how your total account balanced has increased or decreased over time. Left to right is most to least recent balance.
 - **Top Spending Categories**: A pie chart breaking down your transaction history by the place where the transaction occurred. 
