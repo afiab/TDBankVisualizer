@@ -2,7 +2,23 @@
 
 I made this as a way to track my own spending and financial habits from TD Bank. I can download the data as a csv from my account, so I decided to parse it and generate graphs based on the data.
 
-Sample CSV Data for testing:
+## Running Locally
+Use the following commands:
+```
+npm install papaparse recharts
+npm run dev
+```
+
+## Intended Usage
+Download a csv file of your account history when you login on the TD Bank website. Then upload that file onto this site for your transaction history to be visualized.
+
+### Generated Charts
+- **Account Balance Over Time**: A line chart that visualizes how your total account balanced has increased or decreased over time. Left to right is most to least recent balance.
+- **Top Spending Categories**: A pie chart breaking down your transaction history by the place where the transaction occurred. 
+- **Top Income Sources**: A pie chart breaking down where your deposits are sourced from.
+- **Spending vs. Income Over Time**: A bar graph with red to represent spending and green to represent deposits. The timing of the bars are from left to right of most to least recent.
+
+### Sample CSV Data for testing:
 
 ```
 Date,Bank RTN,Account Number,Transaction Type,Description,Debit,Credit,Check Number,Account Running Balance
