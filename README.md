@@ -2,6 +2,9 @@
 
 I made this as a way to track my own spending and financial habits from TD Bank. I can download the data as a csv from my account, so I decided to parse it and generate graphs based on the data.
 
+### Tech Stack
+React front-end, PapaParse React library for CSV parsing, Recharts React library for data and chart visualizations
+
 ## Running Locally
 Use the following commands:
 ```
